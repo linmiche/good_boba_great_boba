@@ -1,3 +1,5 @@
+@media screen and (min-width: 600px) {
+
 /* body of page*/
 body, html {
     margin: 0;
@@ -627,4 +629,6 @@ h1 {
 
 #next-ingredients-page:hover {
     background-color: grey;
+}
+
 }
