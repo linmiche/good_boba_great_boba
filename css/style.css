@@ -1,0 +1,630 @@
+/* body of page*/
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+img {
+    position: absolute;
+    filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.5));
+}
+
+img:hover {
+    transform: translateY(-10px);
+    filter: drop-shadow(0px 0px 10px white);
+}
+
+#main-content {
+    filter: none; /* Default state */
+    transition: filter 0.3s ease;
+}
+
+#main-content.blur {
+    filter: blur(5px); /* Blurred state */
+    pointer-events: none;
+}
+
+h1 {
+    position: absolute;
+    background-color: pink;
+    border-radius: 0px 0px 10px 10px;
+    left: 1070px;
+    font-size: 25px;
+    color: white;
+    top: -17px;
+    padding: 0px 10px;
+    filter: drop-shadow(0px 0px 10px black);
+}
+
+/* Scoreboard */
+.scoreboard {
+    margin-left: 10px;
+    top: 10px;
+    background-color: white;
+    border-radius: 10px;
+    padding-left: 40px;
+    background-position: center;
+    width: 170px;
+    height: 120px;
+    position: absolute;
+    border: 6px solid pink;
+    z-index: 50;
+}
+
+#fire {
+    all: unset;
+    position: absolute;
+    width: 26px;
+    top: 58px;
+    left: 25px;
+    z-index: 100;
+}
+
+#coin {
+    all: unset;
+    position: absolute;
+    width: 34px;
+    top: 23px;
+    left: 23px;
+    z-index: 100;
+}
+
+#timer-icon {
+    all: unset;
+    position: absolute;
+    width: 32px;
+    top: 92px;
+    left: 23px;
+    z-index: 100;
+}
+
+/* Ingredients Book */
+#ingredients-book {
+    width: 80px;
+    left: 250px;
+    top: 30px;
+    z-index: 1000;
+}
+
+#ingredients-book:hover {
+    transform: translateY(-10px);
+    filter: drop-shadow(0px 0px 10px white);
+}
+
+/* Background Music */
+#audio-controls {
+    position: absolute;
+    top: 770px;
+    left: 10px;
+    background-color: lightblue;
+    border-radius: 10px;
+    padding: 7px;
+    width: auto;
+    height: auto;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    column-gap: 5px;
+}
+#music-toggle {
+    align-self: center;
+    border: 4px solid white;
+    background-color: white;
+    border-radius: 10px;
+    padding: 3px;
+}
+#music-toggle:hover {
+    background-color: rgb(171, 171, 171);
+}
+
+#mute-music {
+    background-color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+#mute-music:hover {
+    background-color: rgb(171, 171, 171);
+}
+
+#volume-slider {
+    top: 790px;
+    left: 190px;
+    border: 4px solid pink;
+}
+
+#toggle-sfx {
+    align-self: center;
+    border: 4px solid white;
+    background-color: white;
+    border-radius: 10px;
+    padding: 3px;
+}
+
+#toggle-sfx:hover {
+    background-color: rgb(171, 171, 171);
+}
+
+/* Order Note */
+#order {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+#order-background {
+    width: 170px;
+    margin-left: 283px;
+    margin-top: -160px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.order-container {
+    width: auto;
+    height: auto;
+    padding-left: 10px;
+    color: black;
+    font-family:'Courier New', Courier, monospace;
+    position: absolute;
+    margin-left: 188px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    line-height: 1;
+    padding: 0;
+}
+
+  .order-container h2 {
+    margin-top: 40px;
+    margin-left: 295px;
+    text-align: center;
+    font-size: 15px;
+    z-index: 2;
+    position: relative;
+}
+
+  .order-container p {
+    font-size: 8px;
+    font-weight: bolder;
+    margin-left: 307px;
+    z-index: 2;
+    position: relative;
+}
+
+#popup-content {
+    position: relative;
+    padding: 25px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+#order-popup {
+    text-align: left;
+}
+
+#close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgb(117, 9, 58);
+    color: white;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#close-popup:hover {
+    background-color: rgb(78, 6, 38);
+}
+
+/* Trash */
+#trash {
+    width: 100px;
+    top: 660px;
+    left: 20px;
+}
+
+
+/* Register */
+#register {
+    width: 350px;
+    margin-left: 1170px;
+    top: -30px;
+}
+
+/* Cups */
+#cup-stack {
+    width: 270px;
+    margin-left: 1040px;
+    top: 160px;
+    z-index: 90;
+}
+
+#cup {
+    position: absolute;
+    width: 280px;
+    margin-left: 660px;
+    top: 480px;
+    z-index: 1000;
+    display: inline-block;
+    pointer-events: none;
+    padding: 0;
+}
+
+/* Lids */
+#lid-stack {
+    width: 200px;
+    margin-left: 1290px;
+    top: 230px;
+    z-index: 100;
+}
+
+#lid {
+    position: absolute;
+    width: 280px;
+    margin-left: 660px;
+    top: 480px;
+    z-index: 1001;
+    display: inline-block;
+    pointer-events: none;
+    padding: 0;
+}
+
+/* Straws*/
+#straws {
+    width: 170px;
+    margin-left: 1020px;
+    top: 370px;
+    z-index: 100;
+}
+
+#straw {
+    position: absolute;
+    width: 280px;
+    margin-left: 657px;
+    top: 378px;
+    z-index: 1002;
+    display: inline-block;
+    pointer-events: none;
+    padding: 0;
+}
+
+/* Glitter */
+#glitter {
+    width: 170px;
+    margin-left: 1150px;
+    top: 380px;
+    z-index: 100;
+}
+
+/* Milks */
+
+.milks {
+    width: 180px;
+    top: 240px;
+    margin-left: 300px;
+}
+
+#milk {
+    margin-left: -30px;
+}
+
+#oat_milk {
+    margin-left: 52px
+}
+
+#almond_milk {
+    margin-left: 136px;
+}
+
+#soy_milk {
+    margin-left: 220px;
+}
+
+#strawberry_milk {
+    margin-left: 303px;
+}
+
+/* Syrups */
+.syrups{
+    width: 180px;
+    top: 480px;
+}
+
+#strawberry_syrup{
+    margin-left: 1040px;
+    z-index: 104;
+}
+
+#passionfruit_syrup{
+    margin-left: 1135px;
+    z-index: 103;
+}
+
+#mango_syrup{
+    margin-left: 1230px;
+    z-index: 102;
+}
+
+#brown_sugar_syrup{
+    margin-left: 1325px;
+    z-index: 101;
+}
+
+/* Toppings */
+.toppings{
+    width: 150px;
+}
+
+#brown_sugar_boba {
+    margin-left: 500px;
+    top: 362px;
+}
+
+#mango_jelly_stars {
+    margin-left: 500px;
+    top: 470px;
+}
+
+#lychee_jelly {
+    margin-left: 640px;
+    top: 362px;
+}
+
+#rainbow_jelly {
+    margin-left: 640px;
+    top: 470px;
+}
+
+/* Ice */
+#ice {
+    width: 220px;
+    margin-left: 800px;
+    top: 380px;
+    z-index: 0;
+}
+
+/* Steeper */
+#steeper {
+    width: 200px;
+    top: 560px;
+    margin-left: 300px;
+}
+
+/* Tea Tins */
+.tea-tin {
+    width: 140px;
+    top: 400px;
+}
+
+#black-tea-tin {
+    margin-left: 100px;
+}
+
+#jasmine-tea-tin {
+    margin-left: 200px;
+}
+
+#taro-tea-tin {
+    margin-left: 300px;
+}
+
+/* In Cup Ingredients */
+
+.ingredient-in-cup {
+    position: absolute;
+    width: 300px;
+    margin-left: 650px;
+    top: 460px;
+    z-index: 990;
+    pointer-events: none;
+    padding: 0;
+}
+
+  /* Layering Order in Cup */
+.ice {
+    z-index: 1;
+}
+
+.milk {
+    z-index: 2;
+}
+
+.tea {
+    z-index: 3;
+}
+
+.topping {
+    z-index: 4;
+}
+
+.glitter {
+    z-index: 5;
+}
+
+.syrup {
+    z-index: 6;
+}
+
+
+/* Tutorials */
+.popup {
+    position: fixed;
+    width: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: pink;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.popup button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.popup button:hover {
+    background-color: #ddd;
+}
+
+.exit-button {
+    position: absolute;
+    top: 86px;
+    left: 760px;
+    background-color: rgb(63, 3, 33);
+    color: white;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.exit-button:hover {
+    background-color: rgb(130, 36, 83);
+}
+
+
+#prev-page {
+    position: absolute;
+    top: 540px;
+    left: 390px;
+    background-color: rgb(63, 3, 33);
+    color: white;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: none;
+
+    cursor: pointer;
+}
+
+#prev-page:hover {
+    background-color: rgb(130, 36, 83);
+}
+
+#next-page {
+    position: absolute;
+    top: 540px;
+    left: 740px;
+    background-color: rgb(63, 3, 33);
+    color: white;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+#next-page:hover {
+    background-color: rgb(130, 36, 83);
+}
+
+#tutorial-popup {
+    all: unset;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: auto;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+}
+
+#tutorial-page {
+    all: unset;
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+.tutorial-button {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* Ingredients Book */
+#ingredients-book-popup {
+    all: unset;
+    position: fixed;
+    top: 400px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: auto;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+}
+
+#ingredients-book-page {
+    all: unset;
+    width: 100%;
+    height: auto;
+    position: relative;
+}
+
+#prev-ingredients-page {
+    position: absolute;
+    top: 608px;
+    left: 390px;
+    background-color: white;
+    color: black;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border: 8px solid rgb(16, 84, 84);
+}
+
+#prev-ingredients-page:hover {
+    background-color: grey;
+}
+
+#next-ingredients-page {
+    position: absolute;
+    top: 608px;
+    left: 724px;
+    background-color: white;
+    color: black;
+    font-size: 16px;
+    padding: 5px 10px;
+    border: 8px solid rgb(16, 84, 84);
+    cursor: pointer;
+}
+
+#next-ingredients-page:hover {
+    background-color: grey;
+}

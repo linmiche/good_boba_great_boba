@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Good Boba, Great Boba!</title> <!-- An homage to "Good Pizza, Great Pizza" https://goodpizzagreatpizza.com/ -->
+  <link rel="icon" href="assets/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background-image: url('assets/background.png'); background-size: 1512px; background-position: center; background-repeat: no-repeat; margin: 0; padding: 0;"> <!--background behind the counter is from: https://play.google.com/store/apps/details?id=com.tapblaze.coffeebusiness&hl=en_US&pli=1-->
+    <div id="main-content">
+    <div class="game-container">
+    <!-- Header -->
+    <header>
+      <div class="scoreboard">
+        <p>Coins: <span id="coins">0</span></p>
+        <p>Streak: <span id="streak-counter">0</span></p>
+        <p>Time Left: <span id="timer">30</span> seconds</p>
+      </div>
+    </header>
+    <main>
+        <h1>Good Boba, Great Boba!</h1>
+    <!-- Trash-->
+    <img id="trash" src="assets/trash.png" alt="Trash Bin">
+
+    <!--Fire-->
+    <img id="fire" src="assets/fire.png" alt="Streak Fire"> <!--png from: https://www.megavoxels.com/learn/how-to-make-pixel-art-fire/-->
+
+    <!--Coin-->
+    <img id="coin" src="assets/coin.png" alt="Gold Coin">
+
+    <!--Timer-->
+    <img id="timer-icon" src="assets/timer.png" alt="Timer"> <!--png from: https://www.shutterstock.com/image-illustration/pixel-illustration-timer-2118473264-->
+
+    <!--Ingredients Book-->
+    <img id="ingredients-book" src="assets/ingredients-book.png" alt="Ingredients Book" onclick="showIngredientsBookPopup()">
+
+    <!--Sound Effects--><!-- all sound effects from: zapsplat.com -->
+    <div id="sound-effects">
+        <audio id="milk-sound" src="assets/milk.mp3"></audio>
+        <audio id="ice-sound" src="assets/ice.mp3"></audio>
+        <audio id="lid-sound" src="assets/lid.mp3"></audio>
+        <audio id="straw-sound" src="assets/straw.mp3"></audio>
+        <audio id="syrup-sound" src="assets/syrup.mp3"></audio>
+        <audio id="glitter-sound" src="assets/glitter.mp3"></audio>
+        <audio id="topping-sound" src="assets/topping.mp3"></audio>
+        <audio id="cup-sound" src="assets/cup.mp3"></audio>
+        <audio id="right-sound" src="assets/right.mp3"></audio>
+        <audio id="wrong-sound" src="assets/wrong.mp3"></audio>
+        <audio id="trash-sound" src="assets/trash.mp3"></audio>
+    </div>
+
+    <!--Background Music-->
+    <audio id="background-music" src="assets/background-music.mp3" loop autoplay muted></audio> <!--music from: https://www.youtube.com/watch?v=Uj93hicGDNc-->
+    <div id="audio-controls"> <!--From SI 539 Video Homework-->
+        <button id="music-toggle">Pause Music</button>
+        <input id="volume-slider" type="range" min="0" max="1" step="0.01" value="0.5" aria-label="Volume">
+        <button id="toggle-sfx">Turn Sound Effects Off</button>
+    </div>
+
+    <!-- Order Note -->
+    <div class="order-container">
+        <div id="order" onclick="showOrderPopup()">
+            <div id="order-text">
+                <h2>Order</h2>
+                <p id="order-ice">Ice: </p>
+                <p id="order-tea">Tea: </p>
+                <p id="order-topping">Topping: </p>
+                <p id="order-milk">Milk: </p>
+                <p id="order-syrup">Syrup: </p>
+                <p id="order-glitter">Glitter: </p>
+            </div>
+            <img id="order-background" src="assets/order.png" alt="Order Note Paper">
+        </div>
+    </div>
+
+    <!-- Pop-Up Order -->
+    <div id="order-popup" class="popup" style="display: none;">
+        <div id="popup-content">
+            <div id="full-order-container">
+            </div>
+            <button id="close-popup" class="exit-btn">X</button>
+        </div>
+    </div>
+
+    <!-- Cup Display -->
+    <div class="cup-display" id="cup-display">
+        <div id="lid-display"></div>
+        <div id="straw-display"></div>
+    </div>
+      <!-- Ingredient container -->
+      <div class="ingredients" id="ingredients-container"></div>
+
+    <!-- Counter with Ingredients -->
+    <div class="counter">
+      <div class="ingredient-list">
+
+         <!-- Tea Steeping Area -->
+        <div class="tea-steeping">
+            <!-- Tea tins -->
+            <img id="green-tea-tin" class="tea-tin" src="assets/green_tea.png" alt="Green Tea Tin" data-name="Green Tea" onclick="selectTeaTin('green')">
+            <img id="black-tea-tin" class="tea-tin" src="assets/black_tea.png" alt="Black Tea Tin" data-name="Black Tea" onclick="selectTeaTin('black')">
+            <img id="jasmine-tea-tin" class="tea-tin" src="assets/jasmine_tea.png" alt="Jasmine Tea Tin" data-name="Jasmine Tea" onclick="selectTeaTin('jasmine')">
+            <img id="taro-tea-tin" class="tea-tin" src="assets/taro_tea.png" alt="Taro Tea Tin" data-name="Taro Tea" onclick="selectTeaTin('taro')">
+
+            <!-- Steeper -->
+            <img id="steeper" class="steeper" src="assets/steeper.png" alt="Steeper with Water" data-name="Tea Steeper" onclick="addTeaToCup()">
+         </div>
+
+        <!-- Cup Stack -->
+        <img id="cup-stack" src="assets/cup_stacks.png" alt="Cup Stack" data-name="Cups" onclick="selectCup()">
+
+        <!-- Ice -->
+        <img id="ice" class="topping" src="assets/ice.png" alt="Ice" data-name="Ice" onclick="addIce()">
+
+        <!-- Toppings -->
+        <img id="brown_sugar_boba" class="toppings" src="assets/brown_sugar_boba.png" alt="Brown Sugar Boba" data-name="Brown Sugar Boba" onclick="selectTopping('Brown Sugar Boba')">
+        <img id="mango_jelly_stars" class="toppings" src="assets/mango_jelly_stars.png" alt="Mango Jelly Stars" data-name="Mango Jelly Stars" onclick="selectTopping('Mango Jelly Stars')">
+        <img id="lychee_jelly" class="toppings" src="assets/lychee_jelly.png" alt="Lychee Jelly" data-name="Lychee Jelly" onclick="selectTopping('Lychee Jelly')">
+        <img id="rainbow_jelly" class="toppings" src="assets/rainbow_jelly.png" alt="Rainbow Jelly" data-name="Rainbow Jelly" onclick="selectTopping('Rainbow Jelly')">
+
+        <!-- Milks/Bases -->
+        <img id="milk" class="milks" src="assets/milk.png" alt="Milk" data-name="Milk" onclick="selectMilk('Milk')">
+        <img id="oat_milk" class="milks" src="assets/oat_milk.png" alt="Oat Milk" data-name="Oat Milk" onclick="selectMilk('Oat Milk')">
+        <img id="almond_milk" class="milks" src="assets/almond_milk.png" alt="Almond Milk" data-name="Almond Milk" onclick="selectMilk('Almond Milk')">
+        <img id="soy_milk" class="milks" src="assets/soy_milk.png" alt="Soy Milk" data-name="Soy Milk" onclick="selectMilk('Soy Milk')">
+        <img id="strawberry_milk" class="milks" src="assets/strawberry_milk.png" alt="Strawberry Milk" data-name="Strawberry Milk" onclick="selectMilk('Strawberry Milk')">
+
+        <!-- Syrups -->
+        <img id="strawberry_syrup" class="syrups" src="assets/strawberry_syrup.png" alt="Strawberry Syrup" data-name="Strawberry Syrup" onclick="selectSyrup('Strawberry Syrup')">
+        <img id="passionfruit_syrup" class="syrups" src="assets/passionfruit_syrup.png" alt="Passionfruit Syrup" data-name="Passionfruit Syrup" onclick="selectSyrup('Passionfruit Syrup')">
+        <img id="mango_syrup" class="syrups" src="assets/mango_syrup.png" alt="Mango Syrup" data-name="Mango Syrup" onclick="selectSyrup('Mango Syrup')">
+        <img id="brown_sugar_syrup" class="syrups" src="assets/brown_sugar_syrup.png" alt="Brown Sugar Syrup" data-name="Brown Sugar Syrup" onclick="selectSyrup('Brown Sugar Syrup')">
+
+        <!-- Glitter -->
+        <img id="glitter" class="glitter" src="assets/glitter.png" alt="Add Glitter" data-name="Glitter" onclick="addGlitter()">
+
+        <!-- Lid Stack-->
+        <img id="lid-stack" src="assets/lid_stacks.png" alt="Lid Stack" data-name="Lids" onclick="addLid()">
+
+        <!-- Straws-->
+        <img id="straws" src="assets/straws.png" alt="Straws" data-name="Straws" onclick="addStraw()">
+
+        <!-- Register -->
+        <img id="register" src="assets/register.png" alt="Register" data-name="Register" onclick="submitOrder()"> <!--image from: https://www.pixilart.com/art/cash-register-sr2441f6aeacfd0?ft=challenges&ft_id=1463-->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- First Pop-Up -->
+    <div id="first-time-popup" class="popup">
+        <p id="popup-question">Are you playing for the first time?</p>
+        <div id="first-time-options">
+            <button id="first-time-yes">Yes</button>
+            <button id="first-time-no">No</button>
+        </div>
+        <div id="tutorial-options" style="display: none;">
+            <button id="tutorial-yes">Yes</button>
+            <button id="tutorial-no">No</button>
+        </div>
+    </div>
+
+<!-- Tutorial Pop-Up -->
+    <div id="tutorial-popup" class="popup" style="display: none;">
+        <img id="tutorial-page" alt="Tutorial Page">
+        <button id="prev-page" class="tutorial-button" style="display: none;">&#8592; Previous</button>
+        <button id="next-page" class="tutorial-button">Next &#8594;</button>
+        <button id="exit-tutorial" class="exit-button">X</button>
+    </div>
+
+<!--Ingredients Book-->
+<div id="ingredients-book-popup" class="popup" style="display: none;">
+    <img id="ingredients-book-page" alt="Ingredients Book Page">
+    <button id="prev-ingredients-page" class="tutorial-button" style="display: none;">&#8592; Previous</button>
+    <button id="next-ingredients-page" class="tutorial-button">Next &#8594;</button>
+    <button id="exit-ingredients-book" class="exit-button">X</button>
+</div>
+
+  <script src="script.js"></script>
+</main>
+</body>
+</html>
