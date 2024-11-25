@@ -1,7 +1,16 @@
-@media screen and (min-width: 600px) {
 
+@media screen and (min-width: 956px) {
 /* body of page*/
-body, html {
+html {
+    background-image: url('../assets/background.png'); /*background behind the counter is from: https://play.google.com/store/apps/details?id=com.tapblaze.coffeebusiness&hl=en_US&pli=1-->*/
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
+
+body{
     margin: 0;
     padding: 0;
     width: 100vw;
@@ -87,10 +96,11 @@ h1 {
 
 /* Ingredients Book */
 #ingredients-book {
+    position: fixed;
     width: 80px;
     left: 250px;
     top: 30px;
-    z-index: 1000;
+    z-index: 10000;
 }
 
 #ingredients-book:hover {
@@ -121,12 +131,6 @@ h1 {
 }
 #music-toggle:hover {
     background-color: rgb(171, 171, 171);
-}
-
-#mute-music {
-    background-color: white;
-    border: 2px solid white;
-    border-radius: 10px;
 }
 
 #mute-music:hover {
@@ -188,7 +192,7 @@ h1 {
 
   .order-container h2 {
     margin-top: 40px;
-    margin-left: 295px;
+    margin-left: 316px;
     text-align: center;
     font-size: 15px;
     z-index: 2;
@@ -209,6 +213,7 @@ h1 {
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 2000;
 }
 
 #order-popup {
@@ -474,7 +479,7 @@ h1 {
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     text-align: center;
-    z-index: 1000;
+    z-index: 2000;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -551,7 +556,7 @@ h1 {
     transform: translate(-50%, -50%);
     width: 80%;
     height: auto;
-    z-index: 1000;
+    z-index: 2000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -584,7 +589,7 @@ h1 {
     transform: translate(-50%, -50%);
     width: 80%;
     height: auto;
-    z-index: 1000;
+    z-index: 2000;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -630,5 +635,617 @@ h1 {
 #next-ingredients-page:hover {
     background-color: grey;
 }
+}
+
+@media screen and (min-width: 1550px) {
+
+h1 {
+    width: 18%;
+    left: 71%;
+    font-size: 1.68vw;
+    top: -2.2%;
+}
+
+header {
+    width: 100%;
+}
+
+.scoreboard {
+    width: 11.5%;
+    height: 15%;
+    font-size: 1.1vw;
+    border-width: 2%;
+    left: .1%;
+}
+
+#fire {
+    width: 1.6%;
+    top: 7.3%;
+    left: 1.4%;
+}
+
+#coin {
+    width: 2.2%;
+    left: 1.2%;
+    top: 2.7%;
+}
+
+#timer-icon {
+    width: 2.2%;
+    left: 1.2%;
+    top: 11.2%;
+}
+
+#ingredients-book {
+    width: 5.4%;
+    left: 16.5%;
+}
+
+#audio-controls {
+    width: 26%;
+    height: 4%;
+    top: 93%;
+}
+
+#music-toggle {
+    width: 100%;
+    font-size: 1vw;
+}
+
+#volume-slider {
+    width: 93%;
+}
+
+#toggle-sfx {
+    width: 100%;
+    font-size: .9vw;
+}
+
+#order {
+    width: 100%;
+}
+
+#order-background {
+    width: 11vw;
+    left: 12%;
+    top: 94%;
+}
+
+.order-container h2 {
+    left: 11.5%;
+    font-size: 1vw;
+}
+
+.order-container p {
+    left: 12.5%;
+    font-size: .51vw;
+}
+
+#popup-content {
+    width: 85%;
+    height: 80%;
+    font-size: 1.08vw;
+}
+
+#order-popup {
+    width: 20%;
+    height: 28%;
+}
+
+#close-popup {
+    width: 10%;
+    height: 12%;
+    left: 86%;
+}
+
+#trash {
+    width: 6.5%;
+    top: 79.8%;
+}
+
+#register {
+    width: 23%;
+    left: 8%;
+    top: -3%;
+}
+
+#cup-stack {
+    width: 18%;
+    left: 6.5%;
+    top: 20%;
 
 }
+
+#cup {
+    width: 18.5%;
+    left: 4.8%;
+    top: 58.5%;
+}
+
+#lid-stack {
+    width: 13.5%;
+    left: 8.5%;
+    top: 28%;
+}
+
+#lid {
+    width: 18.5%;
+    left: 4.8%;
+    top: 58.5%;
+}
+
+#straws {
+    width: 11%;
+    left: 7.5%;
+    top: 46%;
+}
+
+#straw {
+    width: 18.5%;
+    left: 4.8%;
+    top: 46.1%;
+}
+
+#glitter {
+    width: 11%;
+    left: 7.7%;
+    top: 47%;
+}
+
+.milks {
+    width: 12%;
+    top: 29%;
+}
+
+#oat_milk {
+    left: .6%;
+}
+
+#almond_milk {
+    left: 1.1%;
+}
+
+#soy_milk {
+    left: 1.7%;
+}
+
+#strawberry_milk {
+    left: 2.3%;
+}
+
+.syrups {
+    position: absolute;
+    width: 11.9%;
+    top: 58.2%;
+}
+
+#strawberry_syrup {
+    left: 7%;
+}
+
+#passionfruit_syrup {
+    left: 7.6%;
+}
+
+#mango_syrup {
+    left: 8.2%;
+}
+
+#brown_sugar_syrup {
+    left: 8.8%;
+}
+
+.toppings {
+    width: 10%;
+    left: 3.5%;
+}
+
+#brown_sugar_boba {
+    top: 44%;
+}
+
+#mango_jelly_stars {
+    top: 57%;
+}
+
+#lychee_jelly {
+    top: 44%;
+    left: 4.5%;
+}
+
+#rainbow_jelly {
+    top: 57%;
+    left: 4.5%;
+}
+
+#ice {
+    width: 14.5%;
+    top: 46.5%;
+    left: 5.5%;
+}
+
+#steeper {
+    width: 13.2%;
+    left: 2%;
+    top: 68%;
+}
+
+.tea-tin {
+    width: 9.3%;
+    top: 49%;
+}
+
+#black-tea-tin {
+    left: 1%;
+}
+
+#jasmine-tea-tin {
+    left: 2%;
+}
+
+#taro-tea-tin {
+    left: 3%;
+}
+
+.ingredient-in-cup {
+    width: 18%;
+    top: 59.3%;
+    left: 5.5%;
+}
+
+.milk {
+    width: 18.4%;
+    top: 59%;
+}
+
+.tea {
+    width: 18.2%;
+    left: 5.58%;
+}
+
+.glitter {
+    left: 5.8%;
+}
+
+.syrup {
+    width: 18.8%;
+    top: 56.5%;
+    left: 5.4%;
+}
+
+.popup button {
+    left: 63%;
+    top: 13%;
+}
+
+#prev-page {
+    width: 8%;
+    height: 4%;
+    top: 81%;
+    left: 33%;
+    font-size: 1vw;
+}
+
+#next-page {
+    width: 6%;
+    height: 4%;
+    top: 81%;
+    left: 61%;
+    font-size: 1vw;
+}
+
+#prev-ingredients-page {
+    left: 32%;
+    top: 91%;
+}
+
+#next-ingredients-page {
+    left: 61%;
+    top: 91%;
+}
+
+}
+
+@media screen and (min-width: 1890px) {
+
+h1 {
+}
+
+.scoreboard {
+    width: 12%;
+    border: 8px solid pink;
+    left: .2%;
+}
+
+#ingredients-book {
+    top: 4%;
+    left: 16.5%;
+}
+
+#audio-controls {
+    width: 26%;
+}
+
+#volume-slider {
+    width: 100%;
+}
+
+#toggle-sfx {
+    margin-left: 8%;
+}
+
+#order-background {
+    left: 26%;
+    top: 82%;
+}
+
+.order-container {
+    top: 1%;
+}
+
+.order-container h2 {
+    left: 26%;
+}
+
+.order-container p {
+    left: 28%;
+}
+
+#close-popup {
+    left: 87%;
+}
+
+
+#register {
+    left: 16%;
+}
+
+#cup-stack {
+    left: 14%;
+}
+
+#cup {
+    left: 9%;
+}
+
+#lid-stack {
+    left: 18%;
+}
+
+#lid {
+    left: 9%;
+}
+
+#straws {
+    left: 14%;
+}
+
+#straw {
+    left: 9%;
+}
+
+#glitter {
+    left: 16%;
+}
+
+#oat_milk {
+    left: 1.2%;
+}
+
+#almond_milk {
+    left: 2.3%;
+}
+
+#soy_milk {
+    left: 3.4%;
+}
+
+#strawberry_milk {
+    left: 4.5%;
+}
+
+#strawberry_syrup {
+    left: 14%;
+}
+
+#passionfruit_syrup {
+    left: 15.2%;
+}
+
+#mango_syrup {
+    left: 16.4%;
+}
+
+#brown_sugar_syrup {
+    left: 17.6%;
+}
+
+#brown_sugar_boba {
+    left: 6.7%;
+}
+
+#mango_jelly_stars {
+    left: 6.7%;
+}
+
+#lychee_jelly {
+    left: 8.7%;
+}
+
+#rainbow_jelly {
+    left: 8.7%;
+}
+
+#ice {
+    left: 10.8%;;
+}
+
+#steeper {
+    left: 4%;
+}
+
+#black-tea-tin {
+    left: 1.5%;
+}
+
+#jasmine-tea-tin {
+    left: 3.5%;
+}
+
+#taro-tea-tin {
+    left: 5.5%;
+}
+
+.ingredient-in-cup {
+    left: 9.8%;
+}
+
+.milk {
+    left: 9.65%;
+}
+
+.tea {
+    left: 9.7%;
+}
+
+.glitter {
+    left: 9.9%;
+}
+
+.syrup {
+    left: 9.5%;
+}
+}
+
+@media screen and (min-width: 1900px) {
+
+.scoreboard {
+    left: .4%;
+}
+
+#order-background {
+    top: 77%;
+}
+
+.order-container {
+    top: 1%;
+    left: 2%;
+}
+
+#register {
+    left: 19.8%;
+}
+
+#cup-stack {
+    left: 17%;
+}
+
+#cup {
+    left: 11%;
+}
+
+#lid-stack {
+    left: 22%;
+}
+
+#lid {
+    left: 11%;
+}
+
+#straws {
+    left: 18%;
+}
+
+#straw {
+    left: 11%;
+}
+
+#glitter {
+    left: 20%;
+}
+
+#oat_milk {
+    left: 1.4%;
+}
+
+#almond_milk {
+    left: 2.8%;
+}
+
+#soy_milk {
+    left: 4.2%;
+}
+
+#strawberry_milk {
+    left: 5.6%;
+}
+
+#strawberry_syrup {
+    left: 17.5%;
+}
+
+#passionfruit_syrup {
+    left: 19%;
+}
+
+#mango_syrup {
+    left: 20.5%;
+}
+
+#brown_sugar_syrup {
+    left: 22%;
+}
+
+#brown_sugar_boba {
+    left: 8.5%;
+}
+
+#mango_jelly_stars {
+    left: 8.5%;
+}
+
+#lychee_jelly {
+    left: 11%;
+}
+
+#rainbow_jelly {
+    left: 11%;
+}
+
+#ice {
+    left: 13.5%;
+}
+
+#steeper {
+    left: 5%;
+}
+
+#black-tea-tin {
+    left: 2%;
+}
+
+#jasmine-tea-tin {
+    left: 4%;
+}
+
+#taro-tea-tin {
+    left: 6%;
+}
+
+.ingredient-in-cup {
+    left: 11.6%;
+}
+
+.tea {
+    left: 11.7%;
+}
+
+.glitter {
+    left: 11.8%;
+}
+
+.syrup {
+    left: 11.4%;
+}
+}
+

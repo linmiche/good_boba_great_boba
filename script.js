@@ -419,12 +419,19 @@ document.getElementById('trash').addEventListener('click', function () {
 generateOrder();
 
 // Sounds
+let soundEffectsVolume = 0.3; // Default volume (50%)
+
 function playSound(soundId) {
     if (!soundEffectsEnabled) return; // Don't play sound if disabled
 
     const sound = document.getElementById(soundId);
-    sound.currentTime = 0; // Reset to start of sound
-    sound.play();
+    if (sound) {
+        sound.volume = soundEffectsVolume; // Set the volume
+        sound.currentTime = 0; // Reset to start of sound
+        sound.play();
+    } else {
+        console.error(`Sound with ID '${soundId}' not found.`);
+    }
 }
 
 // Background Music
