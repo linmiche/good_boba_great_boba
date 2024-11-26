@@ -4,7 +4,7 @@ let timerInterval;
 let timeLeft = 30;
 let currentOrder = {};
 let playerOrder = { topping: '', tea: '', milk: '', syrup: '', glitter: false, ice: false, lid: false, straw:false };
-let selectedTea = ''; // Tracks the selected tea
+let selectedTea = '';
 let cupAdded = false;
 let soundEffectsEnabled = true;
 let gameActive = false;
@@ -14,14 +14,14 @@ function normalizeString(value) {
 }
 //Gameplay
 
-// Function to update timer
+// Function to update timer https://stackoverflow.com/questions/49310787/javascript-refresh-time-in-html-text-box-getelementbyid-error
 function updateTimerDisplay() {
     const timerDisplay = document.getElementById('timer');
     timerDisplay.textContent = timeLeft;
 }
 
 // Start timer
-function startOrderTimer() {
+function startOrderTimer() { // https://www.w3schools.com/js/js_timing.asp and https://developer.mozilla.org/en-US/docs/Web/API/Window/setInterval
     if (!gameActive) {
         console.log('Timer not starting: game is inactive.');
         return; // Exit the function if the game isn't active
@@ -49,18 +49,18 @@ function startOrderTimer() {
     }, 1000);
 }
 
-document.getElementById('first-time-no').addEventListener('click', () => {
+document.getElementById('first-time-no').addEventListener('click', () => { //Event listeners: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
     firstTimePopup.style.display = 'none';
     toggleBlur(false);
-    gameActive = true; // Activate the game
-    startOrderTimer(); // Start the timer
+    gameActive = true;
+    startOrderTimer();
 });
 
 document.getElementById('exit-tutorial').addEventListener('click', () => {
     tutorialPopup.style.display = 'none';
     toggleBlur(false);
-    gameActive = true; // Activate the game
-    startOrderTimer(); // Start the timer
+    gameActive = true;
+    startOrderTimer();
 });
 
 document.getElementById('tutorial-yes').addEventListener('click', () => {
@@ -73,8 +73,8 @@ document.getElementById('tutorial-yes').addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', () => {
     firstTimePopup.style.display = 'block';
     toggleBlur(true);
-    gameActive = false; // Deactivate the game
-    clearInterval(timerInterval); // Stop the timer
+    gameActive = false;
+    clearInterval(timerInterval);
 });
 
 // Order timeout
@@ -97,14 +97,14 @@ const teas = ['Green Tea', 'Black Tea', 'Jasmine Tea', 'Taro Tea'];
 const milks = ['Milk', 'Oat Milk', 'Almond Milk', 'Strawberry Milk', 'Soy Milk'];
 const syrups = ['Strawberry Syrup', 'Passionfruit Syrup', 'Mango Syrup', 'Brown Sugar Syrup'];
 
-function generateOrder() {
+function generateOrder() { //https://stackoverflow.com/questions/4550505/getting-a-random-value-from-a-javascript-array and https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
     currentOrder = {
         topping: toppings[Math.floor(Math.random() * toppings.length)],
         tea: teas[Math.floor(Math.random() * teas.length)],
         milk: milks[Math.floor(Math.random() * milks.length)],
         syrup: syrups[Math.floor(Math.random() * syrups.length)],
-        glitter: Math.random() < 0.4,
-        ice: Math.random() < 0.5,
+        glitter: Math.random() < 0.4, //random boolean generator: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+        ice: Math.random() < 0.5, //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
     };
 
     // Update the order note
@@ -121,17 +121,15 @@ function selectCup() {
     playSound('cup-sound');
     const cupDisplay = document.getElementById('cup-display');
 
-    // Check if cup exists
     const existingCup = document.getElementById('cup');
     if (!existingCup) {
-      // Create cup
+
       const cupImg = document.createElement('img');
       cupImg.src = 'assets/cup.png';
       cupImg.alt = 'Cup';
       cupImg.id = 'cup';
       cupImg.className = 'cup';
 
-      // Add cup to display
       cupDisplay.appendChild(cupImg);
       cupAdded = true;
       document.getElementById('cup-status').innerText = 'Cup is ready!';
@@ -141,7 +139,7 @@ function selectCup() {
   }
 
 // Adding Ingredients to Cup
-function addIngredientToCup(ingredient) {
+function addIngredientToCup(ingredient) { //https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement and Lisa Friedrichsen's videos on Javascript DOMS: https://www.youtube.com/@lfriedrichsen
     if (!cupAdded) {
         alert('You must add a cup first!');
         return;
@@ -154,7 +152,7 @@ function addIngredientToCup(ingredient) {
   ingredientImg.alt = ingredient;
   ingredientImg.className = `ingredient-in-cup ${ingredient}`;
 
-  ingredientImg.classList.add('ingredient-in-cup');
+  ingredientImg.classList.add('ingredient-in-cup'); //classList: https://developer.mozilla.org/en-US/docs/Web/API/Element/classList
   if (ingredient.includes('ice')) {
       ingredientImg.classList.add('ice');
   } else if (ingredient.includes('milk')) {
@@ -168,7 +166,7 @@ function addIngredientToCup(ingredient) {
   } else {
       ingredientImg.classList.add('topping');
   }
-  // Add image to container
+
   container.appendChild(ingredientImg);
 
   // Update cup status
@@ -312,7 +310,7 @@ function addStraw() {
 let correctOrderAlertShown = false;
 
 function submitOrder() {
-    if (!document.getElementById('cup')) {
+    if (!document.getElementById('cup')) { //https://stackoverflow.com/questions/3103962/converting-html-string-into-dom-elements
         alert('Please select a cup before submitting the order!');
         return;
     }
@@ -336,16 +334,16 @@ function submitOrder() {
 
     if (isToppingCorrect && isTeaCorrect && isMilkCorrect && isSyrupCorrect && isGlitterCorrect && isIceCorrect && isLidCorrect && isStrawCorrect) {
         coins += 10;
-        streak++;
+        streak++; //https://www.freecodecamp.org/news/form-validation-with-html5-and-javascript/
 
-        if (!correctOrderAlertShown) {
+        if (!correctOrderAlertShown) { //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
             alert(`Correct! Streak: ${streak}. Coins: ${coins}. New order coming up!`);
             correctOrderAlertShown = true; // Ensure this alert shows only once
         }
 
         playSound('right-sound');
 
-        // Update streak and coins in the UI
+        // Update streak and coins in UI
         document.getElementById('coins').innerText = coins;
         document.getElementById('streak-counter').innerText = streak;
 
@@ -357,7 +355,7 @@ function submitOrder() {
         playSound('wrong-sound');
         alert('Oops! The order was wrong. Throw the drink out to try again.');
 
-        // Update streak in the UI
+        // Update streak in UI
         document.getElementById('streak-counter').innerText = streak;
     }
 
@@ -368,8 +366,8 @@ function submitOrder() {
 }
 
 
-function restartGame() {
-    correctOrderAlertShown = false; // Reset the alert flag
+function restartGame() { //https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript/Finishing_up
+    correctOrderAlertShown = false;
     coins = 0;
     streak = 0;
     document.getElementById('coins').innerText = coins;
@@ -383,8 +381,8 @@ function restartGame() {
 
 // Trash Function
 
-function resetCup() {
-    // Reset playerOrder to default state
+function resetCup() { //https://developer.mozilla.org/en-US/docs/Web/API/Element/remove
+    // Reset playerOrder
     playerOrder = { topping: '', tea: '', milk: '', syrup: '', glitter: false, lid: false, straw: false };
 
     // Clear all ingredients from cup
@@ -405,7 +403,7 @@ function resetCup() {
     const cup = document.getElementById('cup');
     if (cup) cup.remove();
 
-    // Reset feedback
+
     document.getElementById('cup-status').innerText = 'Cup reset. Start building again!';
     console.log('Cup has been reset successfully.');
 
@@ -419,15 +417,15 @@ document.getElementById('trash').addEventListener('click', function () {
 generateOrder();
 
 // Sounds
-let soundEffectsVolume = 0.3; // Default volume (50%)
+let soundEffectsVolume = 0.3;
 
-function playSound(soundId) {
-    if (!soundEffectsEnabled) return; // Don't play sound if disabled
+function playSound(soundId) { //https://stackoverflow.com/questions/12206631/html5-audio-cant-play-through-javascript-unless-triggered-manually-once
+    if (!soundEffectsEnabled) return;
 
     const sound = document.getElementById(soundId);
     if (sound) {
-        sound.volume = soundEffectsVolume; // Set the volume
-        sound.currentTime = 0; // Reset to start of sound
+        sound.volume = soundEffectsVolume;
+        sound.currentTime = 0;
         sound.play();
     } else {
         console.error(`Sound with ID '${soundId}' not found.`);
@@ -437,15 +435,14 @@ function playSound(soundId) {
 // Background Music
 
 document.addEventListener('DOMContentLoaded', () => {
-    const bgMusic = document.getElementById('background-music');
+    const bgMusic = document.getElementById('background-music'); //https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio
 
-    // Set initial volume
     bgMusic.volume = 0.3;
 
-    // Attempt to play the music on load
+    // Attempt to play music on load https://stackoverflow.com/questions/50490304/how-to-make-audio-autoplay-on-chrome
     bgMusic.play().then(() => {
         console.log("Background music started automatically.");
-        bgMusic.muted = false; // Unmute music after ensuring it's playing
+        bgMusic.muted = false;
     }).catch((error) => {
         console.log("Autoplay blocked by browser, waiting for user interaction.");
     });
@@ -455,7 +452,7 @@ document.addEventListener('click', () => {
     const bgMusic = document.getElementById('background-music');
 
     if (bgMusic.muted) {
-        bgMusic.muted = false; // Unmute the music
+        bgMusic.muted = false;
         bgMusic.play().catch((error) => {
             console.log("Error playing background music on user interaction:", error);
         });
@@ -467,15 +464,15 @@ document.getElementById('music-toggle').addEventListener('click', () => {
     const musicToggle = document.getElementById('music-toggle');
 
     if (bgMusic.paused) {
-        bgMusic.play();
+        bgMusic.play(); //https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play
         musicToggle.innerText = 'Pause Music';
     } else {
-        bgMusic.pause();
+        bgMusic.pause(); //https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause
         musicToggle.innerText = 'Play Music';
     }
 });
 
-// Select the background music and controls
+// Select background music and controls
 const backgroundMusic = document.getElementById('background-music');
 const playButton = document.getElementById('play-music');
 const pauseButton = document.getElementById('pause-music');
@@ -484,14 +481,13 @@ const volumeSlider = document.getElementById('volume-slider');
 //Audio adjustments from SI 539 Video Homework
 backgroundMusic.volume = volumeSlider.value;
 
-volumeSlider.addEventListener('input', () => {
+volumeSlider.addEventListener('input', () => { //also https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range
     backgroundMusic.volume = volumeSlider.value;
 });
 
 document.getElementById('toggle-sfx').addEventListener('click', () => {
-    soundEffectsEnabled = !soundEffectsEnabled; // Toggle the state
+    soundEffectsEnabled = !soundEffectsEnabled;
 
-    // Update the button text
     const toggleButton = document.getElementById('toggle-sfx');
     if (soundEffectsEnabled) {
         toggleButton.innerText = 'Turn Sound Effects Off';
@@ -502,7 +498,7 @@ document.getElementById('toggle-sfx').addEventListener('click', () => {
 
 // Tutorials
 
-// References to pop-ups and elements
+// References to pop-ups and elements https://www.w3schools.com/howto/howto_js_popup.asp
 const maincontent = document.getElementById('main-content');
 const firstTimePopup = document.getElementById('first-time-popup');
 const tutorialPopup = document.getElementById('tutorial-popup');
@@ -514,8 +510,8 @@ const prevPageBtn = document.getElementById('prev-page');
 const nextPageBtn = document.getElementById('next-page');
 const exitTutorialBtn = document.getElementById('exit-tutorial');
 
-// Function to blur the background
-function toggleBlur(shouldBlur) {
+// Blur background
+function toggleBlur(shouldBlur) { //https://css-tricks.com/almanac/properties/b/backdrop-filter/
     const mainContent = document.getElementById('main-content');
     if (shouldBlur) {
         console.log('Applying blur');
@@ -526,37 +522,37 @@ function toggleBlur(shouldBlur) {
     }
 }
 
-// Show First-Time Pop-Up and blur background
-window.addEventListener('DOMContentLoaded', () => {
+// First-Time Pop-Up and blur background
+window.addEventListener('DOMContentLoaded', () => { //https://developer.mozilla.org/en-US/docs/Web/API/Document/DOMContentLoaded_event
     firstTimePopup.style.display = 'block';
-    toggleBlur(true); // Blur the background
+    toggleBlur(true);
 });
 
-// Handle "No" for first-time player
+// "No" for first-time player
 document.getElementById('first-time-no').addEventListener('click', () => {
     firstTimePopup.style.display = 'none'; // Ensure the first pop-up disappears
-    toggleBlur(false); // Ensure blur is removed
+    toggleBlur(false);
 });
 
-// Handle tutorial pop-up visibility
+// Tutorial pop-up visibility
 document.getElementById('tutorial-yes').addEventListener('click', () => {
     firstTimePopup.style.display = 'none';
     tutorialPopup.style.display = 'block';
-    toggleBlur(true); // Keep blur for the tutorial
+    toggleBlur(true);
 });
 
 document.getElementById('tutorial-no').addEventListener('click', () => {
     firstTimePopup.style.display = 'none';
-    toggleBlur(false); // Remove blur
+    toggleBlur(false);
 });
 
 // Exit tutorial
 document.getElementById('exit-tutorial').addEventListener('click', () => {
     tutorialPopup.style.display = 'none';
-    toggleBlur(false); // Remove blur
+    toggleBlur(false);
 });
 
-// Pages for the tutorial
+// Pages for tutorial
 const tutorialPages = [
     'assets/tutorial-page1.png',
     'assets/tutorial-page2.png',
@@ -578,20 +574,18 @@ let currentPageIndex = 0;
 
 // First-Time Pop-Up Logic
 document.getElementById('first-time-yes').addEventListener('click', () => {
-    // Replace the question text
+
     const popupQuestion = document.getElementById('popup-question');
     popupQuestion.innerText = 'Need a tutorial?';
 
-    // Hide the first-time options
     const firstTimeOptions = document.getElementById('first-time-options');
     firstTimeOptions.style.display = 'none';
 
-    // Show the tutorial options
     const tutorialOptions = document.getElementById('tutorial-options');
     tutorialOptions.style.display = 'block';
 });
 
-// Tutorial Pop-Up Logic
+// Tutorial Pop-Up Logic https://tech.timonwa.com/blog/how-to-create-an-image-slider-using-css-and-javascript and https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
 tutorialYesBtn.addEventListener('click', () => {
     firstTimePopup.style.display = 'none';
     tutorialPopup.style.display = 'block';
@@ -602,7 +596,7 @@ tutorialNoBtn.addEventListener('click', () => {
     firstTimePopup.style.display = 'none';
 });
 
-// Tutorial Navigation Logic
+// Tutorial Navigation https://elearning.adobe.com/2020/07/navigation-buttons-with-javascript/
 function updateTutorialPage() {
     const tutorialPage = document.getElementById('tutorial-page');
     tutorialPage.src = tutorialPages[currentPageIndex]; // Set the image source
@@ -615,9 +609,9 @@ function updateTutorialPage() {
 
 
 document.getElementById('prev-page').addEventListener('click', () => {
-    if (currentPageIndex > 0) { // Ensure we don't go below the first page
-        currentPageIndex--; // Move to the previous page
-        updateTutorialPage(); // Update the image
+    if (currentPageIndex > 0) {
+        currentPageIndex--;
+        updateTutorialPage();
     }
 });
 
@@ -635,14 +629,12 @@ exitTutorialBtn.addEventListener('click', () => {
 
 // Order Pop-Up
 
-function showOrderPopup() {
+function showOrderPopup() { //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator and https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML and https://stackoverflow.com/questions/3450286/dynamic-show-hide-div-with-javascript-not-working
     const orderPopup = document.getElementById('order-popup');
     const fullOrderContainer = document.getElementById('full-order-container');
 
-    // Clear any existing content in the full order container
     fullOrderContainer.innerHTML = '';
 
-    // Populate the full order container with the current order details
     const orderDetails = `
         <p><strong>Order Details:</strong></p>
         <ul>
@@ -656,7 +648,6 @@ function showOrderPopup() {
     `;
     fullOrderContainer.innerHTML = orderDetails;
 
-    // Show the pop-up
     orderPopup.style.display = 'block';
 }
 
@@ -679,26 +670,26 @@ const ingredientsBookPages = [
 
 let currentIngredientsPageIndex = 0;
 
-// Function to update the ingredients book page
+// Function to update ingredients book page
 function updateIngredientsBookPage() {
     const ingredientsPage = document.getElementById('ingredients-book-page');
-    ingredientsPage.src = ingredientsBookPages[currentIngredientsPageIndex]; // Set the image source
-    ingredientsPage.alt = `Ingredients Book Page ${currentIngredientsPageIndex + 1}`; // Update alt text
+    ingredientsPage.src = ingredientsBookPages[currentIngredientsPageIndex];
+    ingredientsPage.alt = `Ingredients Book Page ${currentIngredientsPageIndex + 1}`;
 
     // Show or hide navigation buttons
     document.getElementById('prev-ingredients-page').style.display = currentIngredientsPageIndex > 0 ? 'block' : 'none';
     document.getElementById('next-ingredients-page').style.display = currentIngredientsPageIndex < ingredientsBookPages.length - 1 ? 'block' : 'none';
 }
 
-// Function to show the ingredients book popup
+// Show the ingredients book popup
 function showIngredientsBookPopup() {
     const ingredientsBookPopup = document.getElementById('ingredients-book-popup');
     ingredientsBookPopup.style.display = 'block'; // Show the popup
     updateIngredientsBookPage(); // Display the first page
-    toggleBlur(true); // Blur the rest of the page
+    toggleBlur(true);
 }
 
-// Close the ingredients book popup
+// Close ingredients book popup
 function closeIngredientsBookPopup() {
     const ingredientsBookPopup = document.getElementById('ingredients-book-popup');
     ingredientsBookPopup.style.display = 'none'; // Hide the popup
@@ -715,8 +706,8 @@ document.getElementById('prev-ingredients-page').addEventListener('click', () =>
 
 document.getElementById('next-ingredients-page').addEventListener('click', () => {
     if (currentIngredientsPageIndex < ingredientsBookPages.length - 1) {
-        currentIngredientsPageIndex++; // Move to the next page
-        updateIngredientsBookPage(); // Update the image
+        currentIngredientsPageIndex++;
+        updateIngredientsBookPage();
     }
 });
 
