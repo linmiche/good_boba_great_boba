@@ -8,8 +8,6 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div id="main-content">
-    <div class="game-container">
     <!-- Header -->
     <header>
       <div class="scoreboard">
@@ -19,6 +17,8 @@
       </div>
     </header>
     <main>
+    <div id="main-content">
+    <div class="game-container">
         <h1>Good Boba, Great Boba!</h1>
     <!-- Trash-->
     <img id="trash" src="assets/trash.png" alt="Trash Bin">
@@ -84,7 +84,7 @@
 
     <!-- Counter with Ingredients -->
     <div class="counter">
-      <div class="ingredient-list">
+        <div class="ingredient-list">
 
          <!-- Tea Steeping Area -->
         <div class="tea-steeping">
@@ -135,11 +135,10 @@
         <!-- Register -->
         <img id="register" src="assets/register.png" alt="Register" data-name="Register" onclick="submitOrder()"> <!--image from: https://www.pixilart.com/art/cash-register-sr2441f6aeacfd0?ft=challenges&ft_id=1463-->
 
-      </div>
+        </div>
     </div>
     </div>
-</div>
-</div>
+    </div>
 
     <!--Background Music-->
     <audio id="background-music" src="assets/background-music.mp3" loop autoplay muted></audio> <!--music from: https://www.youtube.com/watch?v=Uj93hicGDNc-->
@@ -179,8 +178,7 @@
     <button id="next-ingredients-page" class="tutorial-button">Next &#8594;</button>
     <button id="exit-ingredients-book" class="exit-button">X</button>
 </div>
-
+</main>
   <script src="script.js"></script>
-    </main>
 </body>
 </html>
