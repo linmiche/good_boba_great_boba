@@ -20,6 +20,10 @@ body{
     flex-direction: column;
   }
 
+h3{
+    display: none;
+}
+
 img {
     position: absolute;
     filter: drop-shadow(0px 4px 2px rgba(0, 0, 0, 0.5));
