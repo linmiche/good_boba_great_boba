@@ -145,8 +145,8 @@
     <audio id="background-music" src="assets/background-music.mp3" loop autoplay muted></audio> <!--music from: https://www.youtube.com/watch?v=Uj93hicGDNc-->
     <div id="audio-controls"> <!--From SI 539 Video Homework-->
         <button id="music-toggle">Pause Music</button>
-        <section>
-            <input id="volume-slider" type="range" min="0" max="1" step="0.01" value="0.5" aria-label="Volume"> <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range-->
+        <section id="volume-slider">
+            <input type="range" min="0" max="1" step="0.01" value="0.5" aria-label="Volume"> <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range-->
         </section>
         <button id="toggle-sfx">Turn Sound Effects Off</button>
     </div>
